@@ -38,6 +38,14 @@
             <input type="text" name="first_name" id="first_name" required />
             <label for="last_name">Last Name</label>
             <input type="text" name="last_name" id="last_name" required />
+
+            <label for="department">Department</label>
+            <select name="department">
+                {% for department in departments %}
+                 <option value="{{department}}" name="department" id="department">
+                    {{department.name}}</option><br>
+                {% endfor %}
+            </select>
             <br>
             <button type="submit" class="btn btn-primary" value="Add Employee">Add Employee</button>
         </form>

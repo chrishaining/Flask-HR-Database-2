@@ -11,6 +11,8 @@
                 <th>Department ID</th>
                 <th>Department Name</th>
                 <th>Employees</th>
+                <th>Add an employee</th>
+
             </thead>
             <tbody>
                 {% for department in departments %}
@@ -23,6 +25,25 @@
                             <li>{{employee.first_name}} {{employee.last_name}}</li>
                             {% endfor %}</ul>
                     </td>
+
+                    <td>
+                        <form method="POST" action="/departments/{{department.id}}/add_employee">
+                            <input type="hidden" value="{{department.id}}" name="department_id">
+
+                            <label for="employee">Choose an employee:</label>
+                            <!-- <input type="text" value="employee_id" name="employee_id" /> -->
+
+                            <select name="employee_id">
+                            <option disabled selected value> -- select an option -- </option>
+                            {% for employee in employees %}
+                            <option value="{{employee.id}}" name='employee_id' id='employee_id'>
+                                {{employee.first_name}} {{employee.last_name}}</option><br> {% endfor %}
+                            </select>
+                            <button type="submit" class="btn btn-primary">Add
+                                employee to department</button>
+                        </form>
+                    </td>
+
                 </tr>
                 </ul>
                 {% endfor %}
@@ -36,7 +57,14 @@
 
         <form action="/departments" method="POST">
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" required />
+
+            <select value="name" name="name">
+                <option value="logistics" name="name" id="name">Logistics</option>
+                <option value="finance" name="name" id="name">Finance</option>
+                <option value="media" name="name" id="name">Media</option>
+                <option value="research" name="name" id="name">Research</option>
+            </select>
+            <!-- <input type="text" name="name" id="name" required /> -->
             <br>
             <button type="submit" class="btn btn-primary" value="Add Department">Add department</button>
         </form>
