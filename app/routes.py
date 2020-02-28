@@ -13,7 +13,8 @@ def index():
 @app.route('/employees')
 def show_employees():
     employees = Employee.query.all()
-    return render_template('employees.html', title="Employees", employees=employees)
+    departments = Department.query.all()
+    return render_template('employees.html', title="Employees", employees=employees, departments=departments)
 
 
 

@@ -33,6 +33,6 @@ db.session.commit()
 department3.employees.append(employee3)
 department3.employees.append(employee2)
 department3.employees.append(employee1)
-
+db.session.commit()
 for employee in department3.employees:
     print(employee)
