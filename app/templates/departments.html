@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <h1>Welcome to the HR department</h1>
+    </div>
+
+    <div class="row">
+        <h2>Departments</h2>
+        <table class="table">
+            <thead>
+                <th>Department ID</th>
+                <th>Department Name</th>
+                <th>Employees</th>
+            </thead>
+            <tbody>
+                {% for department in departments %}
+                <tr>
+                    <td> {{department.id}} </td>
+                    <td>{{department.name}}</td>
+                    <td>
+                        <ul>
+                            {% for employee in department.employees %}
+                            <li>{{employee.first_name}} {employee.last_name}}</li>
+                        </ul>{% endfor %}</ul>
+
+                    </td>
+                </tr>
+                </ul>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="row">
+        <h2>Add a department</h2>
+
+        <form action="/departments" method="POST">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required />
+            <br>
+            <button type="submit" class="btn btn-primary" value="Add Department">Add department</button>
+        </form>
+    </div>
+
+
+</div>
+{% endblock %}

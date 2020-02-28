@@ -36,9 +36,20 @@ def add_employee():
 
 
 # show departments page
-
+@app.route('/departments')
+def show_departments():
+    departments = Department.query.all()
+    return render_template('departments.html', title="Departments", departments=departments)
 
 # add a department
+@app.route('/departments', methods=['POST'])
+def add_department():
+    name = request.form['name']
+    newDepartment = Department(name=name)
+    db.session.add(newDepartment)
+    db.session.commit()
+    return redirect('/departments')
+
 
 # edit a department
 
